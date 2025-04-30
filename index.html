@@ -1,57 +1,18 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
 
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Faloji – Legal Documents</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faloji – Privacy Policy & Terms of Use</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; color: #222; }
-    h1, h2 { color: #3b3b98; }
+    h1, h2, h3 { color: #3b3b98; }
     a { color: #3b3b98; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-
   <h1>Faloji – Privacy Policy & Terms of Use</h1>
   <p><strong>Effective Date:</strong> April 30, 2025</p>
 
@@ -69,7 +30,6 @@
   </ul>
 
   <h3>How We Use Your Information</h3>
-  <p>We use your information for the following purposes, based on the legal bases outlined:</p>
   <ul>
     <li><strong>To generate personalized fortune and astrology content:</strong> Necessary for the performance of our contract with you.</li>
     <li><strong>To process in-app purchases and manage subscriptions:</strong> Necessary for the performance of our contract and to comply with legal obligations.</li>
@@ -81,63 +41,40 @@
   <h3>Third-Party Services</h3>
   <p>We use the following third-party service providers to support app functionality. These providers may process your data as described in their privacy policies:</p>
   <ul>
-    <li><strong>Cloud Storage & Analytics:</strong> Firebase, which may collect usage data and device information. See [Firebase Privacy Policy](https://firebase.google.com/support/privacy).</li>
-    <li><strong>Purchase Management:</strong> RevenueCat, which processes purchase data to manage subscriptions. See [RevenueCat Privacy Policy](https://www.revenuecat.com/privacy).</li>
+    <li><strong>Cloud Storage & Analytics:</strong> Firebase, which may collect usage data and device information. See <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a>.</li>
+    <li><strong>Purchase Management:</strong> RevenueCat, which processes purchase data to manage subscriptions. See <a href="https://www.revenuecat.com/privacy">RevenueCat Privacy Policy</a>.</li>
     <li><strong>External Content Services:</strong> APIs that generate content based on user input. These services may process your input data to provide personalized content.</li>
-    <li><strong>Advertising (if enabled):</strong> AdMob or similar providers, which may collect data for targeted advertising. See [AdMob Privacy Policy](https://policies.google.com/privacy).</li>
+    <li><strong>Advertising (if enabled):</strong> AdMob or similar providers, which may collect data for targeted advertising. See <a href="https://policies.google.com/privacy">AdMob Privacy Policy</a>.</li>
   </ul>
 
   <h3>Data Retention</h3>
-  <p>We retain your personal data only for as long as necessary to provide the services you have requested, to comply with legal obligations, to resolve disputes, and to enforce our agreements. Specific retention periods depend on the type of data and the purpose for which it is processed. For example, purchase data is retained as required by tax laws, while user-provided content may be deleted upon request.</p>
+  <p>We retain your personal data only for as long as necessary to provide the services you have requested, to comply with legal obligations, to resolve disputes, and to enforce our agreements...</p>
 
   <h3>Data Security</h3>
   <p>Your data is securely stored on cloud services with restricted access, using industry-standard encryption (e.g., AES-256) and other security measures to protect against unauthorized access.</p>
 
   <h3>Your Rights</h3>
-  <p>Depending on your location, you have the following rights regarding your personal data:</p>
-  <ul>
-    <li><strong>GDPR (EU Residents):</strong>
-      <ul>
-        <li>Access your personal data.</li>
-        <li>Rectify inaccurate data.</li>
-        <li>Erase your data under certain conditions.</li>
-        <li>Restrict processing.</li>
-        <li>Data portability.</li>
-        <li>Object to processing.</li>
-        <li>Withdraw consent at any time, where processing is based on consent.</li>
-        <li>Lodge a complaint with a supervisory authority.</li>
-      </ul>
-    </li>
-    <li><strong>CCPA (California Residents):</strong>
-      <ul>
-        <li>Know what personal information is collected, used, shared, or sold.</li>
-        <li>Delete personal information.</li>
-        <li>Opt-out of the sale of personal information.</li>
-        <li>Non-discrimination for exercising CCPA rights.</li>
-      </ul>
-    </li>
-  </ul>
-  <p>To exercise your rights, please contact us at <a href="mailto:your-support@email.com">your-support@email.com</a>. For CCPA requests, you can also use our designated request form [insert link]. We will respond to requests within the timeframes required by law (e.g., 45 days for CCPA requests).</p>
+  <p>Depending on your location, you have the following rights regarding your personal data...</p>
 
   <h3>Do Not Sell My Personal Information (CCPA)</h3>
-  <p>If advertising is enabled, we may share your data with ad networks, which may be considered a “sale” under CCPA. California residents can opt-out of this by clicking <a href="[insert opt-out link]">Do Not Sell My Personal Information</a> or contacting us at <a href="mailto:your-support@email.com">your-support@email.com</a>. If advertising is not enabled, we do not sell your personal information.</p>
+  <p>If advertising is enabled, we may share your data with ad networks, which may be considered a “sale” under CCPA. California residents can opt-out of this by contacting us at <a href="mailto:gokalparnk13@gmail.com">gokalparnk13@gmail.com</a>. If advertising is not enabled, we do not sell your personal information.</p>
 
   <h3>Data Transfers</h3>
-  <p>Your personal data may be transferred to and processed in countries outside the European Economic Area (EEA), including the United States, where our service providers are located. We ensure that such transfers are subject to appropriate safeguards, such as Standard Contractual Clauses or the EU-US Data Privacy Framework.</p>
+  <p>Your personal data may be transferred to and processed in countries outside the European Economic Area (EEA)...</p>
 
   <h3>Children's Privacy</h3>
-  <p>This App is not intended for users under the age of 13. We do not knowingly collect data from children. If we become aware that a child under 13 has provided personal information, we will take steps to delete it.</p>
+  <p>This App is not intended for users under the age of 13...</p>
 
   <h3>Policy Updates</h3>
-  <p>We may update this policy and notify users through the App or our website if significant changes are made. Please check this page periodically for updates.</p>
+  <p>We may update this policy and notify users through the App or our website if significant changes are made...</p>
 
   <h3>Contact</h3>
-  <p>If you have any questions or wish to exercise your rights, contact us at: <a href="mailto:your-support@email.com">your-support@email.com</a></p>
+  <p>If you have any questions or wish to exercise your rights, contact us at: <a href="mailto:gokalparnk13@gmail.com">gokalparnk13@gmail.com</a></p>
 
   <h2>2. Terms of Use</h2>
 
   <h3>Purpose of the App</h3>
-  <p>Faloji is designed solely for entertainment purposes. The App provides fortune-telling and astrology content that should not be interpreted as professional advice (medical, legal, financial, or psychological).</p>
+  <p>Faloji is designed solely for entertainment purposes...</p>
 
   <h3>User Responsibilities</h3>
   <ul>
@@ -146,19 +83,18 @@
   </ul>
 
   <h3>In-App Purchases</h3>
-  <p>The App offers paid subscriptions and one-time purchases via Apple’s In-App Purchase system for iOS devices and Google Play’s billing system for Android devices, managed by RevenueCat. All payments are final and subject to the respective platform’s policies. Subscription terms, renewals, and cancellations are governed by Apple or Google, as applicable.</p>
+  <p>The App offers paid subscriptions and one-time purchases via Apple’s In-App Purchase system for iOS devices and Google Play’s billing system for Android devices...</p>
 
   <h3>Content Sources</h3>
-  <p>Fortune and astrology content is generated dynamically using third-party external services. While we strive to ensure consistent and relevant output, we do not guarantee accuracy or relevance.</p>
+  <p>Fortune and astrology content is generated dynamically using third-party external services...</p>
 
   <h3>Limitation of Liability</h3>
-  <p>We shall not be held responsible for any personal, emotional, financial, or other consequences arising from the use of the App’s content. Users agree to use the app entirely at their own discretion.</p>
+  <p>We shall not be held responsible for any personal, emotional, financial, or other consequences arising from the use of the App’s content...</p>
 
   <h3>Modifications</h3>
   <p>We reserve the right to modify or terminate the App or its services at any time without notice.</p>
 
   <h3>Governing Law and Dispute Resolution</h3>
-  <p>This agreement shall be governed by and construed in accordance with the laws of [Insert State/Country, e.g., Turkey], without regard to its conflict of law principles. Any disputes arising under or in connection with this agreement shall be subject to the exclusive jurisdiction of the courts located in [Insert City, State/Country].</p>
-
+  <p>This agreement shall be governed by and construed in accordance with the laws of Turkey, without regard to its conflict of law principles. Any disputes arising under or in connection with this agreement shall be subject to the exclusive jurisdiction of the courts located in Istanbul, Turkey.</p>
 </body>
 </html>
